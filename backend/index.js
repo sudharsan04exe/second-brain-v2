@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 // 1. CORS origin from env
-const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+const allowedOrigin = process.env.CORS_ORIGIN ;
 app.use(cors({
   origin: allowedOrigin,
   credentials: true,

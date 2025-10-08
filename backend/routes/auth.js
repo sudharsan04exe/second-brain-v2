@@ -5,7 +5,7 @@ import { body, validationResult } from 'express-validator'; // Add validation mi
 import User from '../models/User.js';
 
 const router = express.Router();
-const JWT_SECRET = 'your_jwt_secret'; // Use env var in production
+const JWT_SECRET = process.env.JWT_SECRET; // Use env var in production
 
 router.post(
   '/signup',
