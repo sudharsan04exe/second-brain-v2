@@ -3,6 +3,10 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import authRoutes from './routes/auth.js';
+import noteRoutes from './routes/notes.js';
+import tagRoutes from './routes/tags.js';
+import shareRoutes from './routes/share.js';
 dotenv.config();
 
 const app = express();
