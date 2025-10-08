@@ -12,11 +12,8 @@ dotenv.config();
 const app = express();
 
 // 1. CORS origin from env
-const allowedOrigin = process.env.CORS_ORIGIN ;
-app.use(cors({
-  origin: allowedOrigin,
-  credentials: true,
-}));
+// const allowedOrigin = process.env.CORS_ORIGIN ;
+app.use(cors({ origin: '*' }));
 
 app.use(express.json());
 app.use(cookieParser());
