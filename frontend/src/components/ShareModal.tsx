@@ -46,51 +46,51 @@ export function ShareModal({ note, onClose }: ShareModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
-        <div className="flex items-center justify-between p-6 border-b border-slate-200">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <Share2 size={24} className="text-blue-600" />
+            <div className="p-2.5 bg-teal-50 rounded-xl shadow-sm">
+              <Share2 size={24} className="text-teal-600" />
             </div>
-            <h2 className="text-xl font-bold text-slate-900">Share Note</h2>
+            <h2 className="text-xl font-semibold text-gray-900">Share Note</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
-            <X size={24} className="text-slate-600" />
+            <X size={24} className="text-gray-600" />
           </button>
         </div>
 
         <div className="p-6 space-y-6">
           <div>
-            <h3 className="font-semibold text-slate-900 mb-1">{note.title}</h3>
-            <p className="text-sm text-slate-600">
+            <h3 className="font-semibold text-gray-900 mb-2">{note.title}</h3>
+            <p className="text-sm text-gray-600">
               Anyone with the link can view this note
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Share Link
             </label>
             {isLoading ? (
-              <div className="text-center py-4 text-slate-500">Generating share link...</div>
+              <div className="text-center py-4 text-gray-500 font-medium">Generating share link...</div>
             ) : (
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={shareUrl}
                   readOnly
-                  className="flex-1 px-4 py-2 border border-slate-300 rounded-lg bg-slate-50 text-slate-700 text-sm"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 text-sm shadow-sm"
                 />
                 <button
                   onClick={handleCopy}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
+                  className={`px-5 py-3 rounded-lg font-medium transition-all flex items-center gap-2 shadow-md ${
                     copied
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                      ? 'bg-emerald-100 text-emerald-700'
+                      : 'bg-teal-600 text-white hover:bg-teal-700 hover:shadow-lg'
                   }`}
                 >
                   {copied ? (
@@ -109,19 +109,19 @@ export function ShareModal({ note, onClose }: ShareModalProps) {
             )}
           </div>
 
-          <div className="bg-slate-50 rounded-lg p-4">
-            <h4 className="font-medium text-slate-900 mb-2 text-sm">Sharing Details</h4>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">•</span>
+          <div className="bg-gray-50 rounded-lg p-5">
+            <h4 className="font-semibold text-gray-900 mb-3 text-sm">Sharing Details</h4>
+            <ul className="space-y-2.5 text-sm text-gray-600">
+              <li className="flex items-start gap-2.5">
+                <span className="text-teal-600 mt-0.5 font-bold">•</span>
                 <span>Public link - anyone with this link can view the note</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">•</span>
+              <li className="flex items-start gap-2.5">
+                <span className="text-teal-600 mt-0.5 font-bold">•</span>
                 <span>Read-only access - viewers cannot edit the note</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">•</span>
+              <li className="flex items-start gap-2.5">
+                <span className="text-teal-600 mt-0.5 font-bold">•</span>
                 <span>Link remains active until you delete the note</span>
               </li>
             </ul>
@@ -130,14 +130,14 @@ export function ShareModal({ note, onClose }: ShareModalProps) {
           <div className="flex gap-3">
             <button
               onClick={handleOpenInNewTab}
-              className="flex-1 px-4 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 font-medium transition-colors flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-all flex items-center justify-center gap-2 shadow-sm"
             >
               <ExternalLink size={18} />
               Preview
             </button>
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+              className="flex-1 px-4 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
             >
               Done
             </button>

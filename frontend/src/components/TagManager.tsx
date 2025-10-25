@@ -50,29 +50,29 @@ export function TagManager({ onClose }: TagManagerProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b border-slate-200">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <TagIcon size={24} className="text-blue-600" />
+            <div className="p-2.5 bg-teal-50 rounded-xl shadow-sm">
+              <TagIcon size={24} className="text-teal-600" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">Manage Tags</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">Manage Tags</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
-            <X size={24} className="text-slate-600" />
+            <X size={24} className="text-gray-600" />
           </button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6">
-          <div className="mb-6">
-            <h3 className="text-sm font-semibold text-slate-700 mb-3">Create New Tag</h3>
-            <div className="bg-slate-50 rounded-xl p-4 space-y-4">
+          <div className="mb-8">
+            <h3 className="text-sm font-semibold text-gray-700 mb-4">Create New Tag</h3>
+            <div className="bg-gray-50 rounded-xl p-5 space-y-5">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Tag Name
                 </label>
                 <input
@@ -80,13 +80,13 @@ export function TagManager({ onClose }: TagManagerProps) {
                   value={newTagName}
                   onChange={(e) => setNewTagName(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleCreateTag()}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-shadow shadow-sm text-gray-900"
                   placeholder="Enter tag name..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
                   Color
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -94,9 +94,9 @@ export function TagManager({ onClose }: TagManagerProps) {
                     <button
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className={`w-10 h-10 rounded-lg transition-all ${
+                      className={`w-11 h-11 rounded-lg transition-all shadow-md ${
                         selectedColor === color
-                          ? 'ring-2 ring-offset-2 ring-slate-400 scale-110'
+                          ? 'ring-2 ring-offset-2 ring-teal-500 scale-110'
                           : 'hover:scale-105'
                       }`}
                       style={{ backgroundColor: color }}
@@ -108,7 +108,7 @@ export function TagManager({ onClose }: TagManagerProps) {
               <button
                 onClick={handleCreateTag}
                 disabled={!newTagName.trim()}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-4 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
               >
                 <Plus size={20} />
                 Create Tag
@@ -117,28 +117,28 @@ export function TagManager({ onClose }: TagManagerProps) {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-slate-700 mb-3">Your Tags</h3>
+            <h3 className="text-sm font-semibold text-gray-700 mb-4">Your Tags</h3>
             {tags.length === 0 ? (
-              <div className="text-center py-12">
-                <TagIcon size={48} className="text-slate-300 mx-auto mb-3" />
-                <p className="text-slate-500">No tags yet. Create your first tag above!</p>
+              <div className="text-center py-16">
+                <TagIcon size={48} className="text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 font-medium">No tags yet. Create your first tag above!</p>
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {tags.map((tag) => {
                   const usageCount = getTagUsageCount(tag.id);
                   return (
                     <div
                       key={tag.id}
-                      className="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
+                      className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all shadow-sm"
                     >
                       <div
-                        className="w-4 h-4 rounded-full flex-shrink-0"
+                        className="w-5 h-5 rounded-full flex-shrink-0 shadow-sm"
                         style={{ backgroundColor: tag.color }}
                       />
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-slate-900">{tag.name}</p>
-                        <p className="text-sm text-slate-500">
+                        <p className="font-semibold text-gray-900">{tag.name}</p>
+                        <p className="text-sm text-gray-500 font-medium">
                           Used in {usageCount} {usageCount === 1 ? 'note' : 'notes'}
                         </p>
                       </div>
@@ -156,10 +156,10 @@ export function TagManager({ onClose }: TagManagerProps) {
           </div>
         </div>
 
-        <div className="p-6 border-t border-slate-200">
+        <div className="p-6 border-t border-gray-200">
           <button
             onClick={onClose}
-            className="w-full px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors"
+            className="w-full px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-all shadow-sm"
           >
             Close
           </button>

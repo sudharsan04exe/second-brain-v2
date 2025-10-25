@@ -9,10 +9,10 @@ interface NoteCardProps {
 }
 
 const NOTE_TYPE_CONFIG: Record<NoteType, { icon: typeof FileText; color: string; bg: string }> = {
-  note: { icon: FileText, color: 'text-blue-600', bg: 'bg-blue-50' },
-  link: { icon: Link2, color: 'text-green-600', bg: 'bg-green-50' },
+  note: { icon: FileText, color: 'text-teal-600', bg: 'bg-teal-50' },
+  link: { icon: Link2, color: 'text-emerald-600', bg: 'bg-emerald-50' },
   resource: { icon: Type, color: 'text-amber-600', bg: 'bg-amber-50' },
-  idea: { icon: Lightbulb, color: 'text-pink-600', bg: 'bg-pink-50' },
+  idea: { icon: Lightbulb, color: 'text-rose-600', bg: 'bg-rose-50' },
 };
 
 export function NoteCard({ note, onEdit, onShare }: NoteCardProps) {
@@ -42,42 +42,42 @@ export function NoteCard({ note, onEdit, onShare }: NoteCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-200 overflow-hidden group">
-      <div className="p-5">
-        <div className="flex items-start gap-3 mb-3">
-          <div className={`p-2 rounded-lg ${config.bg}`}>
+    <div className="bg-white rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 overflow-hidden group">
+      <div className="p-6">
+        <div className="flex items-start gap-3 mb-4">
+          <div className={`p-2.5 rounded-xl ${config.bg} shadow-sm`}>
             <Icon size={20} className={config.color} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-slate-900 text-lg leading-tight mb-1 truncate">
+            <h3 className="font-semibold text-gray-900 text-lg leading-tight mb-1.5 truncate">
               {note.title}
             </h3>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-gray-500 font-medium">
               {formatDate(note.updatedAt)}
             </p>
           </div>
           <button
             onClick={() => toggleFavorite(note.id)}
-            className={`p-1.5 rounded-lg transition-colors ${
+            className={`p-2 rounded-lg transition-all ${
               note.isFavorite
-                ? 'text-yellow-500 hover:bg-yellow-50'
-                : 'text-slate-400 hover:bg-slate-100 hover:text-yellow-500'
+                ? 'text-amber-500 hover:bg-amber-50'
+                : 'text-gray-400 hover:bg-gray-100 hover:text-amber-500'
             }`}
           >
             <Star size={18} fill={note.isFavorite ? 'currentColor' : 'none'} />
           </button>
         </div>
 
-        <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">
+        <p className="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-3">
           {note.content || 'No content'}
         </p>
 
         {noteTags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-2 mb-5">
             {noteTags.map((tag) => (
               <span
                 key={tag.id}
-                className="px-2 py-1 rounded-full text-xs font-medium text-white"
+                className="px-3 py-1 rounded-full text-xs font-semibold text-white shadow-sm"
                 style={{ backgroundColor: tag.color }}
               >
                 {tag.name}
@@ -86,34 +86,34 @@ export function NoteCard({ note, onEdit, onShare }: NoteCardProps) {
           </div>
         )}
 
-        <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
+        <div className="flex items-center gap-2 pt-5 border-t border-gray-100">
           <button
             onClick={() => onEdit(note)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-all"
           >
             <Edit size={16} />
-            Edit
+            <span>Edit</span>
           </button>
           <button
             onClick={() => onShare(note)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-all"
           >
             <Share2 size={16} />
-            Share
+            <span>Share</span>
           </button>
           <button
             onClick={() => toggleArchive(note.id)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors ml-auto"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-all ml-auto"
           >
             <Archive size={16} />
-            {note.isArchived ? 'Unarchive' : 'Archive'}
+            <span>{note.isArchived ? 'Unarchive' : 'Archive'}</span>
           </button>
           <button
             onClick={handleDelete}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-all"
           >
             <Trash2 size={16} />
-            Delete
+            <span>Delete</span>
           </button>
         </div>
       </div>

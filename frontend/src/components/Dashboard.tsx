@@ -93,7 +93,7 @@ export function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
@@ -102,13 +102,13 @@ export function Dashboard() {
       />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="bg-white border-b border-slate-200 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold text-slate-900">{getFilterTitle()}</h1>
-            <div className="flex items-center gap-2">
+        <div className="bg-white border-b border-gray-200 p-8">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-3xl font-semibold text-gray-900 tracking-tight">{getFilterTitle()}</h1>
+            <div className="flex items-center gap-3">
               <button
                 onClick={() => setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')}
-                className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors text-slate-700"
+                className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all text-gray-700 font-medium shadow-sm"
                 title={`Sort by date ${sortOrder === 'desc' ? 'ascending' : 'descending'}`}
               >
                 <Calendar size={18} />
@@ -120,28 +120,28 @@ export function Dashboard() {
           <div className="relative">
             <Search
               size={20}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
             />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search notes by title or content..."
-              className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-12 pr-4 py-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-shadow shadow-sm text-gray-900 placeholder:text-gray-400"
             />
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-8">
           {filteredAndSortedNotes.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                <Search size={48} className="text-slate-400" />
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                <Search size={48} className="text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                 {searchQuery ? 'No notes found' : 'No notes yet'}
               </h3>
-              <p className="text-slate-600 mb-6 max-w-md">
+              <p className="text-gray-600 mb-8 max-w-md text-lg">
                 {searchQuery
                   ? 'Try adjusting your search terms or filters'
                   : 'Start building your second brain by creating your first note'}
@@ -149,7 +149,7 @@ export function Dashboard() {
               {!searchQuery && (
                 <button
                   onClick={handleNewNote}
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                  className="px-8 py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg"
                 >
                   Create Your First Note
                 </button>
